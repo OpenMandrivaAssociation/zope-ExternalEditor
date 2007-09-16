@@ -1,31 +1,27 @@
-%define product         ExternalEditor
-%define version         0.9.3
-%define release         1
+%define Product ExternalEditor
+%define product externaleditor
+%define name    zope-%{Product}
+%define version 0.9.3
+%define release %mkrel 2
 
 %define zope_minver     2.7
-
 %define zope_home       %{_prefix}/lib/zope
 %define software_home   %{zope_home}/lib/python
 
-Summary:        Zope External Editor
-Name:           zope-%{product}
-Version:        %{version}
-Release:        %mkrel %{release}
-License:        GPL
-Group:          System/Servers
-Source:         http://plone.org/products/external-editor/releases/%{version}/ExternalEditor-%{version}-src.tar.bz2
-Source1:        ZopeEdit.ini
+Name:		%{name}
+Version:	%{version}
+Release:	%{release}
+Summary:    Zope External Editor
+License:    GPL
+Group:      System/Servers
+URL:        http://plone.org/products/%{product}
+Source:     http://plone.org/products/%{product}/releases/%{version}/%{Product}-%{version}-src.tar.bz2
+Source1:    ZopeEdit.ini
 # give a system configuration file
-Patch0:         zopeedit-etc.patch
-# workaround blocking tk askstring
-Patch1:         zopeedit-askstring.patch
-# allow to give one editor per content type in gui
-Patch2:         zopeedit-content_type.patch
-URL:            http://plone.org/products/external-editor/
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildArch:      noarch
-Requires:       zope >= %{zope_minver}
-Buildrequires:  dos2unix
+Patch0:     zopeedit-etc.patch
+Requires:   zope >= %{zope_minver}
+BuildArch:  noarch
+BuildRoot:  %{_tmppath}/%{name}-%{version}
 
 %description
 Do you like editing zope objects in text areas?
@@ -41,7 +37,6 @@ Summary:        Zope ExternalEditor helper application
 Group:          System/Servers
 License:        GPL
 Requires:       tkinter
-# Requires:     PyQt
 
 %description -n zopeedit
 Do you like editing zope objects in text areas?
@@ -55,10 +50,6 @@ editor(s) directly from the ZMI to modify Zope objects. Its one of those
 %prep
 %setup -c -q
 %patch0 -p0
-# %patch1 -p0
-# %patch2 -p0
-# convert wrong end of line
-find -type f -exec dos2unix -U {} \;
 
 %build
 # Not much, eh? :-)
@@ -89,13 +80,10 @@ if [ -f "%{_prefix}/bin/zopectl" ] && [ "`%{_prefix}/bin/zopectl status`" != "da
 fi
 
 %files
-%defattr(0644, root, root, 0755)
+%defattr(-,root,root)
 %{software_home}/Products/*
 
 %files -n zopeedit
-%defattr(0644, root, root, 0755)
-%attr(0755,root,root) %{_bindir}/zopeedit.py
+%defattr(-,root,root)
+%{_bindir}/zopeedit.py
 %config(noreplace) %{_sysconfdir}/ZopeEdit.ini
-
-
-
