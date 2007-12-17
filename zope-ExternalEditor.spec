@@ -21,7 +21,6 @@ Source1:    ZopeEdit.ini
 Patch0:     zopeedit-etc.patch
 Requires:   zope >= %{zope_minver}
 BuildArch:  noarch
-BuildRoot:  %{_tmppath}/%{name}-%{version}
 
 %description
 Do you like editing zope objects in text areas?
