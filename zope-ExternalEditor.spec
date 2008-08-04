@@ -2,7 +2,7 @@
 %define product externaleditor
 %define name    zope-%{Product}
 %define version 0.9.3
-%define release %mkrel 4
+%define release %mkrel 5
 
 %define zope_minver     2.7
 %define zope_home       %{_prefix}/lib/zope
