@@ -14,7 +14,7 @@ Release:	%{release}
 Summary:    Zope External Editor
 License:    GPL
 Group:      System/Servers
-URL:        http://plone.org/products/%{product}
+URL:        https://plone.org/products/%{product}
 Source:     http://plone.org/products/%{product}/releases/%{version}/%{Product}-%{version}-src.tar.bz2
 Source1:    ZopeEdit.ini
 # give a system configuration file
